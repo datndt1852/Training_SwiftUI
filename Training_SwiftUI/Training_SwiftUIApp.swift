@@ -25,7 +25,7 @@ struct Training_SwiftUIApp: App {
 
     var body: some Scene {
         WindowGroup {
-            SwiftUIView()
+            Challenge2()
         }
         .modelContainer(sharedModelContainer)
     }
