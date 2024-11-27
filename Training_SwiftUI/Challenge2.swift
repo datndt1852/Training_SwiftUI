@@ -27,16 +27,30 @@ struct BarIndicator: View {
         HStack(alignment: .bottom, spacing: 8) {
             ForEach(0..<6) { index in
                 RoundedRectangle(cornerRadius: 5)
-                    .fill(index < level ? Color.gray : Color.black.opacity(0.2))
+                    .fill(colorForLevel(index))
                     .frame(width: 20, height: CGFloat(20 + index * 10))
+                    .opacity(index < level ? 1.0 : 0.2)
+                    .animation(.easeInOut(duration: 0.5).delay(Double(index) * 0.04), value: level)
                     .onTapGesture {
-                        level = index + 1 
+                        withAnimation {
+                            level = index + 1
+                        }
                     }
             }
         }
     }
+    
+    private func colorForLevel(_ index: Int) -> Color {
+        switch level {
+        case 1...2:
+            return index < level ? .red : Color.black.opacity(0.2)
+        case 3...4:
+            return index < level ? .yellow : Color.black.opacity(0.2)
+        default:
+            return index < level ? .green : Color.black.opacity(0.2)
+        }
+    }
 }
-
 struct ButtonControl: View {
     @Binding var level: Int
     
