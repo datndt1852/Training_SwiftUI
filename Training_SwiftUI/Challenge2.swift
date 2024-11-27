@@ -25,7 +25,7 @@ struct BarIndicator: View {
     
     var body: some View {
         HStack(alignment: .bottom, spacing: 8) {
-            ForEach(0..<5) { index in
+            ForEach(0..<6) { index in
                 RoundedRectangle(cornerRadius: 5)
                     .fill(index < level ? Color.gray : Color.black.opacity(0.2))
                     .frame(width: 20, height: CGFloat(20 + index * 10))
@@ -55,7 +55,7 @@ struct ButtonControl: View {
             }
             
             Button(action: {
-                if level < 5 { level += 1 }
+                if level < 6 { level += 1 }
             }) {
                 Image(systemName: "plus")
                     .frame(width: 30, height: 30)
